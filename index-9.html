@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S Elavazhagan | Phoenix Protocol & AI Systems</title>
+  
+  <!-- Google Fonts: Cinzel, Cinzel Decorative, Cormorant Garamond, Syne & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ash: {
+              void: '#060203',
+              charcoal: '#110507',
+              card: 'rgba(17, 5, 7, 0.85)',
+              border: 'rgba(255, 119, 0, 0.22)',
+            },
+            phoenix: {
+              gold: '#FFB800',
+              amber: '#FF7700',
+              ember: '#FF3B00',
+              flame: '#FF1E4B',
+              spark: '#FFF4D0',
+            }
+          },
+          fontFamily: {
+            brand: ['"Cinzel"', 'serif'],
+            crest: ['"Cinzel Decorative"', 'serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Syne"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060203;
+      color: #F3E8E2;
+    }
+
+    /* Navbar Exact Gold Serif Signature */
+    .brand-signature {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      background: linear-gradient(180deg, #FDE69E 0%, #E2B747 48%, #B8851E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 16px rgba(226, 183, 71, 0.3);
+    }
+
+    /* Custom Headline Style (Cormorant Garamond High-Contrast Serif) */
+    .card-headline-serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    /* 360-degree Conic Molten Border Beam for Capsule Nav */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes rotateConic {
+      0% { --angle: 0deg; }
+      100% { --angle: 360deg; }
+    }
+
+    .floating-phoenix-nav {
+      position: relative;
+      border-radius: 9999px;
+      background: rgba(14, 5, 7, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 6px 10px;
+      box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.9),
+        0 0 25px -5px rgba(255, 119, 0, 0.22);
+    }
+
+    .floating-phoenix-nav::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 9999px;
+      background: conic-gradient(
+        from var(--angle),
+        transparent 20%,
+        rgba(255, 59, 0, 0.7) 40%,
+        #FFB800 50%,
+        #FF1E4B 60%,
+        transparent 80%
+      );
+      animation: rotateConic 4.5s linear infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #nav-sliding-pill {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(255, 184, 0, 0.22) 0%, rgba(255, 59, 0, 0.12) 100%);
+      border: 1px solid rgba(255, 184, 0, 0.45);
+      box-shadow: 0 0 16px rgba(255, 119, 0, 0.35);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    /* 3D Perspective Rig */
+    .spatial-card-rig {
+      perspective: 1200px;
+    }
+
+    /* Core Ignition Card Architecture with Dynamic Magnetic Glow */
+    .ignition-card {
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+      background: rgba(14, 5, 7, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 119, 0, 0.22);
+      border-radius: 22px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      overflow: hidden;
+    }
+
+    /* Radial Subsurface Thermal Flare (Follows cursor) */
+    .ignition-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        420px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 119, 0, 0.22),
+        rgba(255, 30, 75, 0.08) 45%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ignition-card:hover::before { 
+      opacity: 1; 
+    }
+
+    /* Laser-Cut Holographic Border Tracking */
+    .ignition-card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(
+        340px circle at var(--mouse-x) var(--mouse-y),
+        #FFB800,
+        #FF3B00 40%,
+        transparent 70%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .ignition-card:hover::after { 
+      opacity: 1; 
+    }
+
+    .ignition-card:hover {
+      box-shadow: 
+        0 28px 60px -15px rgba(0, 0, 0, 0.95),
+        0 0 45px -8px rgba(255, 59, 0, 0.38),
+        inset 0 0 25px rgba(255, 119, 0, 0.1);
+    }
+
+    /* 3D Spatial Depth Layers */
+    .layer-base { 
+      transform: translateZ(10px); 
+    }
+    .layer-mid { 
+      transform: translateZ(26px); 
+      transition: transform 0.3s ease; 
+    }
+    .layer-high { 
+      transform: translateZ(46px); 
+      transition: transform 0.3s ease; 
+    }
+
+    /* Expanding Corner Brackets on Hover */
+    .bracket {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-color: rgba(255, 119, 0, 0.3);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 4;
+      pointer-events: none;
+    }
+    .top-l { top: 12px; left: 12px; border-top: 2px solid; border-left: 2px solid; }
+    .top-r { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
+    .bot-l { bottom: 12px; left: 12px; border-bottom: 2px solid; border-left: 2px solid; }
+    .bot-r { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    .ignition-card:hover .bracket {
+      border-color: #FFB800;
+      box-shadow: 0 0 12px rgba(255, 184, 0, 0.7);
+    }
+    .ignition-card:hover .top-l { transform: translate(-3px, -3px); }
+    .ignition-card:hover .top-r { transform: translate(3px, -3px); }
+    .ignition-card:hover .bot-l { transform: translate(-3px, 3px); }
+    .ignition-card:hover .bot-r { transform: translate(3px, 3px); }
+
+    /* Bottom Ignition Fuel Rail on Hover */
+    .fuel-rail {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FF1E4B, #FF7700, #FFB800, #FF7700, transparent);
+      opacity: 0.25;
+      transition: opacity 0.4s ease, height 0.4s ease;
+      z-index: 3;
+    }
+    .ignition-card:hover .fuel-rail {
+      opacity: 1;
+      height: 3.5px;
+      box-shadow: 0 0 16px #FF7700;
+    }
+
+    .phoenix-fire-text {
+      background: linear-gradient(135deg, #FFF4D0 0%, #FFB800 30%, #FF7700 65%, #FF1E4B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 28px rgba(255, 119, 0, 0.45);
+    }
+
+    .ember-divider {
+      background: linear-gradient(90deg, transparent, #FF1E4B, #FF7700, #FFB800, #FF7700, #FF1E4B, transparent);
+      height: 1.5px;
+    }
+
+    /* Refined Compact Portrait Hologram Pod */
+    .portrait-chamber {
+      position: relative;
+      border-radius: 20px;
+      padding: 8px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 119, 0, 0.18), rgba(6, 2, 3, 0.95) 75%);
+      border: 1px solid rgba(255, 184, 0, 0.4);
+      box-shadow: 0 0 35px rgba(255, 119, 0, 0.22), inset 0 0 25px rgba(255, 59, 0, 0.12);
+    }
+
+    .portrait-chamber::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 26px;
+      border: 1px dashed rgba(255, 184, 0, 0.3);
+      animation: spinSlow 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased relative selection:bg-phoenix-amber/30 selection:text-phoenix-gold overflow-x-hidden">
+
+  <!-- Interactive 3D Background Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Floating Phoenix Core Capsule Navigation -->
+  <header class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div class="floating-phoenix-nav pointer-events-auto flex items-center gap-2 sm:gap-3">
+      
+      <!-- Magnetic Dynamic Sliding Pill -->
+      <div id="nav-sliding-pill"></div>
+
+      <!-- Navigation Matrix -->
+      <nav id="nav-container" class="relative z-10 flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.2em] uppercase">
+        <a href="#hero" class="nav-item px-3.5 py-2 rounded-full text-slate-300 hover:text-white transition-colors duration-200">
+          <span class="text-phoenix-ember font-bold">//</span> 00. Origin
+        </a>
+        <a href="#experience" class="nav-item px-3.5 py-2 rounded-full text-slate-300 hover:text-white transition-colors duration-200">
+          <span class="text-phoenix-ember font-bold">//</span> 01. Ascent
+        </a>
+        <a href="#projects" class="nav-item px-3.5 py-2 rounded-full text-slate-300 hover:text-white transition-colors duration-200">
+          <span class="text-phoenix-ember font-bold">//</span> 02. Forge
+        </a>
+        <a href="#stack" class="nav-item px-3.5 py-2 rounded-full text-slate-300 hover:text-white transition-colors duration-200">
+          <span class="text-phoenix-ember font-bold">//</span> 03. Core
+        </a>
+        <a href="#contact" class="nav-item px-3.5 py-2 rounded-full text-slate-300 hover:text-white transition-colors duration-200">
+          <span class="text-phoenix-ember font-bold">//</span> 04. Beacon
+        </a>
+      </nav>
+
+      <!-- Glowing Divider -->
+      <div class="h-5 w-[1px] bg-gradient-to-b from-transparent via-phoenix-amber/60 to-transparent mx-1 hidden sm:block"></div>
+
+      <!-- Ignite Comms Action -->
+      <a href="mailto:elavazhagansampath31@gmail.com" class="relative z-10 group overflow-hidden px-5 py-2 rounded-full border border-phoenix-amber/70 bg-gradient-to-r from-phoenix-ember/30 via-phoenix-amber/20 to-phoenix-gold/30 hover:border-phoenix-gold text-phoenix-gold font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(255,119,0,0.3)] hover:shadow-[0_0_25px_rgba(255,184,0,0.6)]">
+        <span class="relative z-10 flex items-center gap-1.5 group-hover:text-white transition-colors">
+          <span class="w-1.5 h-1.5 rounded-full bg-phoenix-gold animate-ping"></span>
+          IGNITE COMMS
+        </span>
+        <span class="absolute inset-0 bg-gradient-to-r from-phoenix-ember via-phoenix-amber to-phoenix-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      </a>
+
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-36 pb-24 flex flex-col gap-32">
+
+    <!-- Dual Column Split Hero Section -->
+    <section id="hero" class="min-h-[80vh] flex flex-col justify-center scroll-mt-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Column: Command & Identity Text Content -->
+        <div class="lg:col-span-8 flex flex-col items-start justify-center">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-phoenix-amber/40 bg-ash-charcoal text-phoenix-gold text-[11px] font-mono uppercase tracking-[0.25em] mb-6 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-phoenix-ember animate-ping"></span>
+            <span>AI &amp; Cloud Systems</span>
+          </div>
+
+          <h1 class="font-crest text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-5">
+            Crafting Software &amp; <br />
+            <span class="phoenix-fire-text">
+              digital solutions.
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-8 max-w-2xl">
+            Hi, I'm <strong class="text-white font-medium">S Elavazhagan</strong>. B.Tech in Artificial Intelligence &amp; Data Science at Annai Mira CET. 
+            Forging tracking telematics and SaaS platforms at <strong class="text-phoenix-gold font-semibold">ADIC</strong>, orchestrating AWS cloud architectures, 
+            and architecting national hackathon prototypes.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#projects" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-phoenix-ember via-phoenix-amber to-phoenix-gold text-ash-void font-sans text-xs font-bold uppercase tracking-widest hover:brightness-110 hover:shadow-[0_0_30px_rgba(255,119,0,0.6)] transition-all">
+              View Case Studies ↓
+            </a>
+            
+            <a href="Elavazhagan_Resume.pdf" download="S_Elavazhagan_CV.pdf" class="px-7 py-3.5 rounded-full border border-phoenix-amber/40 hover:border-phoenix-gold bg-ash-charcoal/80 hover:bg-phoenix-amber/15 text-slate-200 hover:text-phoenix-spark font-mono text-xs tracking-wider uppercase transition-all flex items-center gap-2.5 shadow-sm hover:shadow-[0_0_20px_rgba(255,119,0,0.3)]">
+              <svg class="w-4 h-4 text-phoenix-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download CV</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Scaled Down & Proportional Image Chamber with Centered Name Tag -->
+        <div class="lg:col-span-4 flex justify-center lg:justify-end">
+          <div class="spatial-card-rig w-full max-w-[260px] sm:max-w-[275px]">
+            <div id="portrait-card" class="portrait-chamber group transition-transform duration-300 ease-out">
+              
+              <div class="relative rounded-[16px] overflow-hidden border border-phoenix-amber/40 shadow-2xl bg-black aspect-[3/4]">
+                <img 
+                  src="profile.jpg" 
+                  alt="S Elavazhagan" 
+                  class="w-full h-full object-cover filter contrast-[1.04] brightness-95 group-hover:scale-105 transition-transform duration-500"
+                />
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-ash-void via-transparent to-transparent opacity-85 pointer-events-none"></div>
+
+                <!-- Centered Owner Name Tag -->
+                <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-ash-void/95 backdrop-blur-md border border-phoenix-amber/40 flex flex-col items-center text-center gap-1 shadow-lg">
+                  <div class="flex items-center justify-center gap-2">
+                    <span class="text-phoenix-gold text-xs select-none filter drop-shadow-[0_0_6px_rgba(255,184,0,0.5)]">✦</span>
+                    <span class="font-brand text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-phoenix-spark via-phoenix-gold to-phoenix-amber filter drop-shadow-[0_0_10px_rgba(255,184,0,0.3)]">
+                      S ELAVAZHAGAN
+                    </span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5"></span>
+                  </div>
+
+                  <!-- Designation in Cormorant Garamond Serif -->
+                  <div class="border-t border-ash-border/50 pt-1 w-full text-center">
+                    <span class="card-headline-serif text-[15px] sm:text-[16px] text-white tracking-normal font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                      Software Developer
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reticle Corner Accents -->
+              <span class="bracket top-l !border-phoenix-gold"></span>
+              <span class="bracket top-r !border-phoenix-gold"></span>
+              <span class="bracket bot-l !border-phoenix-gold"></span>
+              <span class="bracket bot-r !border-phoenix-gold"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Experience Section (Ascent Cards: Titles in Cormorant Garamond Style) -->
+    <section id="experience" class="scroll-mt-28">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="font-crest text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider flex items-center gap-3">
+          <span class="text-phoenix-gold text-xl">✦ 01.</span> Operational Ascent
+        </h2>
+        <div class="ember-divider flex-1"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- ADIC Card -->
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex items-center justify-between text-xs tracking-widest uppercase mb-4 text-slate-400 font-mono">
+                <span class="px-3 py-1 rounded-full bg-phoenix-amber/20 border border-phoenix-amber/50 text-phoenix-gold font-bold">Active Role</span>
+                <span class="layer-base text-slate-500">Campus SaaS Incubator</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-1.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Software Developer
+              </h3>
+              <h4 class="font-mono text-xs uppercase tracking-wider text-phoenix-amber mb-4">AMCET Digital Innovation Cell (ADIC)</h4>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                Translating student and campus-wide requirements into production SaaS products. Currently heading client mobile architecture for the campus transit platform.
+              </p>
+              <ul class="layer-base text-xs space-y-2.5 text-slate-300 font-light font-sans">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-phoenix-gold font-bold">✦</span>
+                  <span>Engineered a cross-platform Flutter bus tracking app to eliminate commute delays for hundreds of daily student boarders.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-phoenix-gold font-bold">✦</span>
+                  <span>Integrated dynamic Flutter UI state with admin dashboard REST APIs and persistent database schemas.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="layer-high pt-6 mt-6 border-t border-ash-border flex flex-wrap gap-2 text-xs font-mono text-phoenix-gold">
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-ash-border">Flutter</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-ash-border">Dart</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-ash-border">REST APIs</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-ash-border">SaaS Architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Redback Internship Card -->
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex items-center justify-between text-xs tracking-widest uppercase mb-4 text-slate-400 font-mono">
+                <span class="px-3 py-1 rounded-full bg-ash-void border border-slate-700 text-slate-300">Internship</span>
+                <span class="layer-base text-slate-500">June 2026</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-1.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Cloud Infrastructure &amp; Services Intern
+              </h3>
+              <h4 class="font-mono text-xs uppercase tracking-wider text-phoenix-amber mb-4">Redback IT Solutions Pvt. Ltd.</h4>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                Hands-on enterprise cloud operations, isolation architecture, and resource provisioning across Amazon Web Services.
+              </p>
+              <ul class="layer-base text-xs space-y-2.5 text-slate-300 font-light font-sans">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-phoenix-gold font-bold">✦</span>
+                  <span>Configured scalable compute instances with EC2, managed static buckets with S3, and enforced IAM least-privilege security.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-phoenix-gold font-bold">✦</span>
+                  <span>Architected private/public cloud networks with AWS VPC and virtualized nodes using VirtualBox.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="layer-high pt-6 mt-6 border-t border-ash-border flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-slate-800">AWS EC2 / S3</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-slate-800">AWS VPC</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-slate-800">IAM</span>
+              <span class="px-2.5 py-1 rounded bg-ash-void border border-slate-800">VirtualBox</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section (Forge Cards: Titles in Cormorant Garamond Style) -->
+    <section id="projects" class="scroll-mt-28">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <h2 class="font-crest text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider flex items-center gap-3">
+          <span class="text-phoenix-gold text-xl">✦ 02.</span> Artifacts of the Forge
+        </h2>
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-1.5 p-1 bg-ash-charcoal rounded-full border border-ash-border text-xs font-mono tracking-wider uppercase">
+          <button class="filter-btn active px-4 py-1.5 rounded-full bg-gradient-to-r from-phoenix-ember to-phoenix-gold text-ash-void font-bold" data-filter="all">All</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-slate-400 hover:text-white" data-filter="mobile">Mobile / SaaS</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-slate-400 hover:text-white" data-filter="hackathon">Hackathons</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-slate-400 hover:text-white" data-filter="ai">AI / Logic</button>
+        </div>
+      </div>
+
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Project 1 -->
+        <div class="project-card spatial-card-rig" data-category="mobile">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex justify-between items-center text-xs tracking-widest uppercase text-phoenix-gold mb-3 font-mono">
+                <span class="px-2.5 py-0.5 rounded bg-phoenix-amber/15 border border-phoenix-amber/40">ADIC Core Platform</span>
+                <span>2026</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Campus Bus Live Tracking &amp; Telemetry
+              </h3>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-5 font-light">
+                Real-time cross-platform mobile client developed for students to track campus fleet movement, monitor estimated arrivals, and eliminate boarding anxiety. Integrated with a central administrator management console and real-time backend.
+              </p>
+            </div>
+
+            <div class="layer-high">
+              <div class="flex flex-wrap gap-2 mb-4 font-mono text-xs text-slate-300">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Flutter</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Dart</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">State Management</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">REST API</span>
+              </div>
+              <div class="pt-3 border-t border-ash-border text-xs uppercase tracking-widest text-phoenix-gold flex items-center justify-between font-mono">
+                <span>Live at ADIC</span>
+                <span>Ascend →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card spatial-card-rig" data-category="hackathon">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex justify-between items-center text-xs tracking-widest uppercase text-slate-400 mb-3 font-mono">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">SIH 2026</span>
+                <span>Prototype</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Societal Innovation Collaboration Portal
+              </h3>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-5 font-light">
+                Multi-stakeholder portal bridging citizens, universities, industries, and governmental bodies. Incorporates AI challenge categorization, proposal tracking, and centralized governance monitoring for social-impact deployments.
+              </p>
+            </div>
+
+            <div class="layer-high">
+              <div class="flex flex-wrap gap-2 mb-4 font-mono text-xs text-slate-300">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Python</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">AI Categorization</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Gov Dashboard</span>
+              </div>
+              <div class="pt-3 border-t border-ash-border text-xs uppercase tracking-widest text-slate-400 flex items-center justify-between font-mono">
+                <span>SIH 2026 Milestone</span>
+                <span>Ascend →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card spatial-card-rig" data-category="ai">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex justify-between items-center text-xs tracking-widest uppercase text-slate-400 mb-3 font-mono">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Algorithmic System</span>
+                <span>Standalone</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Stack Arena — Tetris game 
+              </h3>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-5 font-light">
+                Algorithmic engine built to analyze real-time board patterns, evaluate placement surface heuristics, and predict optimal piece placement strategies dynamically.
+              </p>
+            </div>
+
+            <div class="layer-high">
+              <div class="flex flex-wrap gap-2 mb-4 font-mono text-xs text-slate-300">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Java</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">HTML / CSS</span>
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Pattern Optimization</span>
+              </div>
+              <div class="pt-3 border-t border-ash-border text-xs uppercase tracking-widest text-slate-400 flex items-center justify-between font-mono">
+                <span>Pattern Predictor</span>
+                <span>Ascend →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card spatial-card-rig" data-category="hackathon">
+          <div class="ignition-card p-8 h-full flex flex-col justify-between">
+            <span class="bracket top-l"></span>
+            <span class="bracket top-r"></span>
+            <span class="bracket bot-l"></span>
+            <span class="bracket bot-r"></span>
+            <div class="fuel-rail"></div>
+
+            <div class="layer-mid">
+              <div class="flex justify-between items-center text-xs tracking-widest uppercase text-slate-400 mb-3 font-mono">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">Web Craft Hackathon 4.0(2026)</span>
+                <span>Ui/Ux web</span>
+              </div>
+              <h3 class="layer-high card-headline-serif text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                STARK EVENTS-Event Managing Web portal
+              </h3>
+              <p class="layer-base text-slate-300 text-sm leading-relaxed mb-5 font-light">
+                The web portal which list the organized event on the specific college where students can register on their likable events and also the admin portal where the administration edit and monitor the events and registered events.
+              </p>
+            </div>
+
+            <div class="layer-high">
+              <div class="flex flex-wrap gap-2 mb-4 font-mono text-xs text-slate-300">
+                <span class="px-2.5 py-0.5 rounded bg-ash-void border border-ash-border">https://elavazhagan-ajay31.github.io/STARK_EVENTS/</span>
+                
+              </div>
+              <div class="pt-3 border-t border-ash-border text-xs uppercase tracking-widest text-slate-400 flex items-center justify-between font-mono">
+                <span></span>
+                <span>Ascend →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Technical Skills Section (The Core: Topics in Cormorant Garamond Style) -->
+    <section id="stack" class="scroll-mt-28">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="font-crest text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider flex items-center gap-3">
+          <span class="text-phoenix-gold text-xl">✦ 03.</span> Core Telemetry
+        </h2>
+        <div class="ember-divider flex-1"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
+        
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-6 h-full border-t-2 border-t-phoenix-gold">
+            <h3 class="card-headline-serif text-2xl font-bold text-white mb-3 tracking-normal">
+              Mobile &amp; Client
+            </h3>
+            <ul class="space-y-2.5 text-slate-300 font-mono">
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>Flutter</span><span class="text-phoenix-gold font-bold">Core</span></li>
+              <!--<li class="flex justify-between border-b border-ash-border pb-1"><span>Dart</span><span class="text-phoenix-gold font-bold">Core</span></li>-->
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>HTML5 / CSS3</span><span class="text-slate-500">Advanced</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>Figma UI/UX</span><span class="text-slate-500">Prototyping</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-6 h-full border-t-2 border-t-phoenix-amber">
+            <h3 class="card-headline-serif text-2xl font-bold text-white mb-3 tracking-normal">
+              Cloud &amp; Ops
+            </h3>
+            <ul class="space-y-2.5 text-slate-300 font-mono">
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>AWS EC2 &amp; S3</span><span class="text-phoenix-amber font-bold">Deploy</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>AWS VPC Net</span><span class="text-phoenix-amber font-bold">VPC/Subnet</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>AWS IAM Policies</span><span class="text-phoenix-amber font-bold">Auth</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>VirtualBox</span><span class="text-slate-500">Virtualization</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-6 h-full border-t-2 border-t-phoenix-ember">
+            <h3 class="card-headline-serif text-2xl font-bold text-white mb-3 tracking-normal">
+              AI &amp; Languages
+            </h3>
+            <ul class="space-y-2.5 text-slate-300 font-mono">
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>Python</span><span class="text-white font-bold">Primary</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>NumPy / Pandas</span><span class="text-white font-bold">Analytics</span></li>
+              <!--<li class="flex justify-between border-b border-ash-border pb-1"><span>Java</span><span class="text-slate-500">OOP</span></li>-->
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>ML &amp; Data Prep</span><span class="text-slate-500">Heuristics</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="spatial-card-rig">
+          <div class="ignition-card p-6 h-full border-t-2 border-t-phoenix-flame">
+            <h3 class="card-headline-serif text-2xl font-bold text-white mb-3 tracking-normal">
+              Workflows
+            </h3>
+            <ul class="space-y-2.5 text-slate-300 font-mono">
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>Git / GitHub</span><span class="text-white font-bold">VCS</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>REST APIs</span><span class="text-white font-bold">Pipelines</span></li>
+              <li class="flex justify-between border-b border-ash-border pb-1"><span>Networking</span><span class="text-slate-500">Protocols</span></li>
+              <!--<li class="flex justify-between border-b border-ash-border pb-1"><span>Agile MVP Design</span><span class="text-slate-500">Scrum</span></li>-->
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Terminal & Contact Section -->
+    <section id="contact" class="scroll-mt-28">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="font-crest text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider flex items-center gap-3">
+          <span class="text-phoenix-gold text-xl">✦ 04.</span> Ignite The Beacon
+        </h2>
+        <div class="ember-divider flex-1"></div>
+      </div>
+
+      <div class="spatial-card-rig">
+        <div class="ignition-card p-8 sm:p-12">
+          <span class="bracket top-l"></span>
+          <span class="bracket top-r"></span>
+          <span class="bracket bot-l"></span>
+          <span class="bracket bot-r"></span>
+          <div class="fuel-rail"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+            
+            <!-- Left Info Panel -->
+            <div class="flex-1 space-y-5">
+              <div class="text-[11px] font-mono tracking-[0.25em] uppercase text-phoenix-amber font-semibold flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-phoenix-ember animate-ping"></span>
+                DIRECT CORRESPONDENCE
+              </div>
+
+              <h3 class="card-headline-serif text-4xl sm:text-5xl font-bold text-white tracking-normal">
+                S Elavazhagan
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed max-w-xl">
+                Available for software engineering, cloud services, and product development opportunities.
+              </p>
+
+              <div class="pt-3 space-y-2 text-xs sm:text-sm font-sans text-slate-300">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-slate-400 font-medium">Email:</span>
+                  <a href="mailto:elavazhagansampath31@gmail.com" class="text-phoenix-gold hover:text-phoenix-spark hover:underline transition-colors font-mono">
+                    elavazhagansampath31@gmail.com
+                  </a>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-slate-400 font-medium">Phone:</span>
+                  <span class="text-slate-200 font-mono">+91 7550090502</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-slate-400 font-medium">Location:</span>
+                  <span class="text-slate-200">Vellore, Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Buttons Panel (Download CV + GitHub + LinkedIn) -->
+            <div class="flex flex-col gap-3.5 w-full lg:w-auto lg:min-w-[280px] justify-center">
+              
+              <!-- Replaced Copy Email with Download CV Pill Button -->
+              <a 
+                href="Elavazhagan_Resume.pdf" 
+                download="S_Elavazhagan_CV.pdf"
+                class="w-full px-8 py-3.5 rounded-full bg-gradient-to-r from-phoenix-amber via-phoenix-ember to-amber-700 hover:from-phoenix-gold hover:to-phoenix-ember text-white font-sans text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-[0_0_25px_rgba(255,119,0,0.35)] hover:shadow-[0_0_35px_rgba(255,184,0,0.6)] hover:scale-[1.02] active:scale-[0.98] text-center flex items-center justify-center gap-2.5"
+              >
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>DOWNLOAD CV</span>
+              </a>
+
+              <!-- GitHub Profile Pill Button -->
+              <a 
+                href="https://github.com/ELAVAZHAGAN-ajay31" 
+                target="_blank" 
+                rel="noreferrer"
+                class="w-full px-8 py-3.5 rounded-full border border-phoenix-amber/60 bg-ash-charcoal/80 hover:bg-phoenix-amber/15 hover:border-phoenix-gold text-slate-200 hover:text-phoenix-spark font-sans text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(255,119,0,0.25)] hover:scale-[1.02] active:scale-[0.98] text-center flex items-center justify-center gap-2.5"
+              >
+                <svg class="w-4 h-4 fill-current text-phoenix-gold" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GITHUB PROFILE</span>
+                <span class="text-phoenix-gold text-sm font-mono leading-none">↗</span>
+              </a>
+
+              <!-- LinkedIn Profile Pill Button -->
+              <a 
+                href="https://www.linkedin.com/in/elavazhagan-s-a21a8b331/?isSelfProfile=true" 
+                target="_blank" 
+                rel="noreferrer"
+                class="w-full px-8 py-3.5 rounded-full border border-phoenix-amber/60 bg-ash-charcoal/80 hover:bg-phoenix-amber/15 hover:border-phoenix-gold text-slate-200 hover:text-phoenix-spark font-sans text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(255,119,0,0.25)] hover:scale-[1.02] active:scale-[0.98] text-center flex items-center justify-center gap-2"
+              >
+                <span>LINKEDIN PROFILE</span>
+                <span class="text-phoenix-gold text-sm font-mono leading-none">↗</span>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Phoenix Ash Footer -->
+  <footer class="border-t border-ash-border py-8 text-center text-xs tracking-widest uppercase text-slate-500 relative z-10 bg-ash-void/80 font-mono">
+    <p>Forged &amp; Architected by S Elavazhagan </p> • Phoenix Fire &amp; Ash Stack
+  </footer>
+
+  <!-- Interactive Script Engine -->
+  <script>
+    // 1. Magnetic Sliding Nav Pill Logic
+    const navContainer = document.getElementById('nav-container');
+    const navItems = document.querySelectorAll('.nav-item');
+    const slidingPill = document.getElementById('nav-sliding-pill');
+    let activeItem = navItems[0];
+
+    function movePillTo(element) {
+      if (!element || !navContainer || !slidingPill) return;
+      const navRect = navContainer.getBoundingClientRect();
+      const itemRect = element.getBoundingClientRect();
+
+      slidingPill.style.opacity = '1';
+      slidingPill.style.left = `${itemRect.left - navRect.left + navContainer.offsetLeft}px`;
+      slidingPill.style.width = `${itemRect.width}px`;
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener('mouseenter', () => movePillTo(item));
+      item.addEventListener('click', () => {
+        activeItem = item;
+        movePillTo(item);
+      });
+    });
+
+    if (navContainer) {
+      navContainer.addEventListener('mouseleave', () => {
+        movePillTo(activeItem);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      let currentId = 'hero';
+      const scrollPos = window.scrollY + 250;
+      
+      document.querySelectorAll('section').forEach(section => {
+        if (scrollPos >= section.offsetTop) {
+          currentId = section.getAttribute('id');
+        }
+      });
+
+      const matchingLink = document.querySelector(`.nav-item[href="#${currentId}"]`);
+      if (matchingLink && matchingLink !== activeItem) {
+        activeItem = matchingLink;
+        movePillTo(matchingLink);
+      }
+    }, { passive: true });
+
+    setTimeout(() => movePillTo(activeItem), 200);
+
+    // 2. Interactive Card Innovation Engine (Cursor Spotlight + 3D Tilt Matrix)
+    const cards = document.querySelectorAll('.ignition-card');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7.5;
+        const rotateY = ((x - centerX) / centerX) * 7.5;
+
+        card.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'none';
+      });
+    });
+
+    // 3. Compact Portrait 3D Parallax Tilt
+    const portraitPod = document.getElementById('portrait-card');
+    if (portraitPod) {
+      window.addEventListener('mousemove', (e) => {
+        const { innerWidth, innerHeight } = window;
+        const xRatio = (e.clientX / innerWidth - 0.5) * 14;
+        const yRatio = (e.clientY / innerHeight - 0.5) * 14;
+        portraitPod.style.transform = `rotateY(${xRatio.toFixed(2)}deg) rotateX(${-yRatio.toFixed(2)}deg)`;
+      });
+    }
+
+    // 4. Background Canvas: Reticle Dial + Streaming Chevrons (>>>) + Rising Embers
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let embers = [];
+    let rot = 0;
+    let animTime = 0;
+    let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let scrollY = 0;
+    let targetScrollY = 0;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initEmbers();
+    }
+
+    function initEmbers() {
+      embers = [];
+      const count = Math.min(Math.floor(width / 16), 110);
+      for (let i = 0; i < count; i++) {
+        embers.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -Math.random() * 1.2 - 0.35,
+          r: Math.random() * 2.2 + 0.6,
+          hue: Math.random() > 0.4 ? '#FFB800' : (Math.random() > 0.5 ? '#FF7700' : '#FF1E4B'),
+          alpha: Math.random() * 0.7 + 0.2
+        });
+      }
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('scroll', () => {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    }, { passive: true });
+    window.addEventListener('mousemove', (e) => {
+      mouse.targetX = (e.clientX / width - 0.5) * 35;
+      mouse.targetY = (e.clientY / height - 0.5) * 35;
+    });
+
+    resize();
+
+    function renderBackground() {
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+      scrollY += (targetScrollY - scrollY) * 0.08;
+      rot += 0.003;
+      animTime += 0.02;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const bgGrad = ctx.createRadialGradient(
+        width * 0.5 + mouse.x * 0.3, height * 0.75 - (scrollY * 0.1), 50,
+        width * 0.5, height * 0.5, Math.max(width, height) * 0.95
+      );
+      bgGrad.addColorStop(0, '#1E080C');
+      bgGrad.addColorStop(0.45, '#120507');
+      bgGrad.addColorStop(1, '#050203');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      const reticleX = -width * 0.05 + mouse.x * 0.35;
+      const reticleY = height * 0.38 + mouse.y * 0.35 - (scrollY * 0.12);
+      const reticleR = Math.min(width * 0.42, 400);
+
+      ctx.save();
+      const glowGrad = ctx.createRadialGradient(reticleX, reticleY, reticleR * 0.2, reticleX, reticleY, reticleR * 1.3);
+      glowGrad.addColorStop(0, 'rgba(255, 119, 0, 0.25)');
+      glowGrad.addColorStop(0.4, 'rgba(255, 30, 75, 0.12)');
+      glowGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = glowGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.beginPath();
+      ctx.arc(reticleX, reticleY, reticleR, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255, 119, 0, 0.25)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      drawRadialTicks(reticleX, reticleY, reticleR * 0.94, 48, rot, 8, 'rgba(255, 184, 0, 0.35)');
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.setLineDash([4, 8]);
+      ctx.arc(reticleX, reticleY, reticleR * 0.82, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255, 119, 0, 0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+
+      drawRadialTicks(reticleX, reticleY, reticleR * 0.72, 36, -rot * 1.3, 10, 'rgba(255, 59, 0, 0.4)');
+
+      ctx.beginPath();
+      ctx.arc(reticleX, reticleY, reticleR * 0.58, rot * 1.8, rot * 1.8 + Math.PI * 0.8);
+      ctx.strokeStyle = '#FFB800';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#FF7700';
+      ctx.shadowBlur = 14;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      ctx.beginPath();
+      ctx.arc(reticleX, reticleY, reticleR * 0.38, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255, 184, 0, 0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(reticleX - reticleR * 0.5, reticleY); ctx.lineTo(reticleX + reticleR * 0.5, reticleY);
+      ctx.moveTo(reticleX, reticleY - reticleR * 0.5); ctx.lineTo(reticleX + reticleR * 0.5, reticleY);
+      ctx.strokeStyle = 'rgba(255, 119, 0, 0.22)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+
+      const railY1 = reticleY - 50;
+      const railY2 = reticleY + 70;
+      const railY3 = reticleY + 180;
+
+      drawCircuitTrace(reticleX + reticleR * 0.85, railY1, width * 0.55, -70, '#FF7700');
+      drawCircuitTrace(reticleX + reticleR * 0.75, railY3, width * 0.48, 65, '#FFB800');
+      drawChevronDataStream(reticleX + reticleR * 0.9, railY2, width * 0.68, animTime);
+
+      drawHaloNode(width * 0.42 + mouse.x * 0.4, railY1 - 70, 7);
+      drawHaloNode(width * 0.65 + mouse.x * 0.5, railY2 - 25, 9);
+      drawHaloNode(width * 0.35 + mouse.x * 0.3, railY3 + 65, 8);
+
+      ctx.save();
+      for (let i = 0; i < embers.length; i++) {
+        const p = embers[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.y < 0) {
+          p.y = height;
+          p.x = Math.random() * width;
+        }
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+
+        ctx.beginPath();
+        ctx.fillStyle = p.hue;
+        ctx.globalAlpha = p.alpha;
+        ctx.shadowColor = p.hue;
+        ctx.shadowBlur = 10;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      requestAnimationFrame(renderBackground);
+    }
+
+    function drawRadialTicks(cx, cy, r, count, angleOffset, length, color) {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      for (let i = 0; i < count; i++) {
+        const theta = angleOffset + (i * (Math.PI * 2 / count));
+        const x1 = cx + Math.cos(theta) * (r - length);
+        const y1 = cy + Math.sin(theta) * (r - length);
+        const x2 = cx + Math.cos(theta) * r;
+        const y2 = cy + Math.sin(theta) * r;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawCircuitTrace(startX, startY, length, yOffset, color) {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.45;
+
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      const kneeX = startX + length * 0.45;
+      ctx.lineTo(kneeX, startY);
+      ctx.lineTo(kneeX + Math.abs(yOffset), startY + yOffset);
+      ctx.lineTo(startX + length, startY + yOffset);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(startX + length, startY + yOffset, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFF4D0';
+      ctx.shadowColor = '#FFB800';
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawChevronDataStream(startX, startY, streamLength, time) {
+      ctx.save();
+
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(startX + streamLength, startY);
+      ctx.strokeStyle = 'rgba(255, 119, 0, 0.35)';
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+
+      const chevronCount = 5;
+      const spacing = 28;
+      const flowOffset = (time * 120) % (streamLength * 0.5);
+
+      for (let i = 0; i < chevronCount; i++) {
+        const cx = startX + 110 + flowOffset + (i * spacing);
+        if (cx < startX + streamLength - 30) {
+          drawSingleChevron(cx, startY, 18, 16, i === chevronCount - 1);
+        }
+      }
+
+      const leadX = startX + streamLength - 50;
+      drawSingleChevron(leadX, startY, 26, 22, true);
+      drawSingleChevron(leadX - 22, startY, 26, 22, true);
+      drawSingleChevron(leadX - 44, startY, 26, 22, false);
+
+      ctx.restore();
+    }
+
+    function drawSingleChevron(x, y, w, h, isGlow) {
+      ctx.beginPath();
+      ctx.moveTo(x - w * 0.5, y - h * 0.5);
+      ctx.lineTo(x + w * 0.5, y);
+      ctx.lineTo(x - w * 0.5, y + h * 0.5);
+      ctx.lineTo(x - w * 0.1, y);
+      ctx.closePath();
+
+      if (isGlow) {
+        ctx.fillStyle = '#FFF4D0';
+        ctx.shadowColor = '#FFB800';
+        ctx.shadowBlur = 14;
+      } else {
+        ctx.fillStyle = 'rgba(255, 119, 0, 0.75)';
+        ctx.shadowBlur = 0;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawHaloNode(x, y, radius) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(x, y, radius * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFF4D0';
+      ctx.shadowColor = '#FFB800';
+      ctx.shadowBlur = 12;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = '#FF7700';
+      ctx.lineWidth = 1.8;
+      ctx.shadowColor = '#FF3B00';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    renderBackground();
+
+    // 5. Project Filter Tabs
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('active', 'bg-gradient-to-r', 'from-phoenix-ember', 'to-phoenix-gold', 'text-ash-void', 'font-bold');
+          b.classList.add('text-slate-400');
+        });
+        btn.classList.add('active', 'bg-gradient-to-r', 'from-phoenix-ember', 'to-phoenix-gold', 'text-ash-void', 'font-bold');
+        btn.classList.remove('text-slate-400');
+
+        const filter = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
